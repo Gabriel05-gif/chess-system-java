@@ -46,6 +46,5 @@ public class Program {
 			System.out.print(e.getMessage());
 			sc.nextLine();
 		}
-		sc.close();
 	}
 }
