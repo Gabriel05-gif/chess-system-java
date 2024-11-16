@@ -106,7 +106,8 @@ public class ChessMatch {
 	}
 
 	private Piece makeMove(Position source, Position target) {
-		Piece p = board.removePiece(source);
+		ChessPiece p = (ChessPiece) board.removePiece(source);
+		p.increaseMoveCount();
 		Piece capturedPiece = board.removePiece(target);
 		board.PlacePiece(p, target);
 
@@ -118,7 +119,8 @@ public class ChessMatch {
 	}
 
 	private void undoMove(Position source, Position target, Piece capturedPiece) {
-		Piece p = board.removePiece(target);
+		ChessPiece p = (ChessPiece) board.removePiece(target);
+		p.decreaseMoveCount();
 		board.PlacePiece(p, source);
 
 		if (capturedPiece != null) {
@@ -128,7 +130,6 @@ public class ChessMatch {
 		}
 	}
 
-	// Mudei aqui
 	private Color opponent(Color color) {
 		return (color == Color.WHITE) ? Color.BLACK : Color.WHITE;
 	}
